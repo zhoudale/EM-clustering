@@ -2,13 +2,15 @@ library(car)
 library(MASS)
 
 
-data1 = as.matrix(read.table("dataset1.txt"))
-data2 = as.matrix(read.table("dataset2.txt"))
-data3 = as.matrix(read.table("dataset3.txt"))
+data1 = as.matrix(read.table("data/dataset1.txt"))
+data2 = as.matrix(read.table("data/dataset2.txt"))
+data3 = as.matrix(read.table("data/dataset3.txt"))
 
 
 # K-means
 kmeans.kernel = function(data, k){
+  # data : data to be clusterd
+  # k : num of clusters
   num = 0
   sse =0
   nlen = nrow(data)
@@ -113,7 +115,7 @@ dataEllipse(data,groups=factor(cluster), levels=c(0.95))
 return(ll)
 }
 
-# e.step
+# e-step
 e.step = function(data, membership, k){
   cluster = apply(membership, 1, which.max)
   center = sapply(1:k, function(i) colMeans(data[cluster==i,]))
